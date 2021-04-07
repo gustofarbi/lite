@@ -3,11 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"lite/splitter"
 	"os"
 	"strings"
 	"time"
-
-	"github.com/splitsh/lite/splitter"
 )
 
 var (

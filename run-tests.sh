@@ -63,8 +63,10 @@ echo "bb" > b/b
 git add b/
 git commit -m"updated b" > /dev/null
 
+go build -o $(pwd)/../split $(pwd)/../../main.go
+
 GIT_SUBTREE_SPLIT_SHA1=`git subtree split --prefix=b/ -q`
-GIT_SPLITSH_SHA1=`$GOPATH/src/github.com/splitsh/lite/lite --prefix=b/ --quiet`
+GIT_SPLITSH_SHA1=`../split --prefix=b/`
 
 if [ "$GIT_SUBTREE_SPLIT_SHA1" == "$GIT_SUBTREE_SPLIT_SHA1" ]; then
     echo "OK ($GIT_SUBTREE_SPLIT_SHA1 == $GIT_SUBTREE_SPLIT_SHA1)"
@@ -73,8 +75,8 @@ else
     exit 1
 fi
 
-GIT_SUBTREE_SPLIT_SHA1=`git subtree split --prefix=b/ -q bff8cdfaaf78a8842b8d9241ccfd8fb6e026f508...`
-GIT_SPLITSH_SHA1=`$GOPATH/src/github.com/splitsh/lite/lite --prefix=b/ --quiet --commit=bff8cdfaaf78a8842b8d9241ccfd8fb6e026f508`
+GIT_SUBTREE_SPLIT_SHA1=`git subtree split --prefix=b/ -q bff8cdfaaf78a8842b8d9241ccfd8fb6e026f508`
+GIT_SPLITSH_SHA1=`../split --prefix=b/ --commit=bff8cdfaaf78a8842b8d9241ccfd8fb6e026f508`
 
 if [ "$GIT_SUBTREE_SPLIT_SHA1" == "$GIT_SUBTREE_SPLIT_SHA1" ]; then
     echo "OK ($GIT_SUBTREE_SPLIT_SHA1 == $GIT_SUBTREE_SPLIT_SHA1)"
@@ -131,8 +133,8 @@ git merge branch2 --no-edit -s ours > /dev/null
 
 GIT_SUBTREE_SPLIT_SHA1_2="a2c4245703f8dac149ab666242a12e1d4b2510d9"
 GIT_SUBTREE_SPLIT_SHA1_3="ba0dab2c4e99d68d11088f2c556af92851e93b14"
-GIT_SPLITSH_SHA1_2=`$GOPATH/src/github.com/splitsh/lite/lite --git="<2.8.0" --prefix=src/ --quiet`
-GIT_SPLITSH_SHA1_3=`$GOPATH/src/github.com/splitsh/lite/lite --prefix=src/ --quiet`
+GIT_SPLITSH_SHA1_2=`../split --git="<2.8.0" --prefix=src/ --quiet`
+GIT_SPLITSH_SHA1_3=`../split --prefix=src/ --quiet`
 
 if [ "$GIT_SUBTREE_SPLIT_SHA1_2" == "$GIT_SUBTREE_SPLIT_SHA1_2" ]; then
     echo "OK ($GIT_SUBTREE_SPLIT_SHA1_2 == $GIT_SUBTREE_SPLIT_SHA1_2)"
@@ -155,7 +157,7 @@ if [ ! -d Twig ]; then
     git clone https://github.com/twigphp/Twig > /dev/null
 fi
 GIT_SUBTREE_SPLIT_SHA1="ea449b0f2acba7d489a91f88154687250d2bdf42"
-GIT_SPLITSH_SHA1=`$GOPATH/src/github.com/splitsh/lite/lite --prefix=lib/ --origin=refs/tags/v1.24.1 --path=Twig --quiet --scratch`
+GIT_SPLITSH_SHA1=`./split --prefix=lib/ --origin=refs/tags/v1.24.1 --path=Twig --quiet --scratch`
 
 if [ "$GIT_SUBTREE_SPLIT_SHA1" == "$GIT_SUBTREE_SPLIT_SHA1" ]; then
     echo "OK ($GIT_SUBTREE_SPLIT_SHA1 == $GIT_SUBTREE_SPLIT_SHA1)"

@@ -1,1 +1,3 @@
 splitter-lite-tests/
+vendor/
+.idea/
