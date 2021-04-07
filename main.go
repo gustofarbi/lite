@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"lite/splitter"
+	"github.com/gustofarbi/lite/splitter"
 	"os"
 	"strings"
 	"time"
