@@ -1,4 +1,4 @@
-module lite
+module github.com/gustofarbi/lite
 
 go 1.16
 
