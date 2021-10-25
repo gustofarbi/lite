@@ -6,7 +6,7 @@ import (
 	"sync"
 
 	"github.com/boltdb/bolt"
-	"github.com/libgit2/git2go/v31"
+	"github.com/libgit2/git2go/v33"
 )
 
 // Prefix represents which paths to split
@@ -61,11 +61,11 @@ func (config *Config) Validate() error {
 		return fmt.Errorf("The target is not a valid Git reference")
 	}
 
-	git, ok := supportedGitVersions[config.GitVersion]
+	gitVersion, ok := supportedGitVersions[config.GitVersion]
 	if !ok {
-		return fmt.Errorf(`The git version can only be one of "<1.8.2", "<2.8.0", or "latest"`)
+		return fmt.Errorf(`The gitVersion version can only be one of "<1.8.2", "<2.8.0", or "latest"`)
 	}
-	config.Git = git
+	config.Git = gitVersion
 
 	return nil
 }
